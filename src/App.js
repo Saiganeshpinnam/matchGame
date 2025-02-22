@@ -2,6 +2,8 @@ import {Component} from 'react'
 
 import TabItem from './components/TabItem'
 
+import ImageItem from './components/ImageItem'
+
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
@@ -250,16 +252,31 @@ const imagesList = [
   },
 ]
 console.log(imagesList.length)
+
 // Replace your code here
+
 class App extends Component {
+  state = {
+    activeTabId: tabsList[0].tabId,
+  }
+
+  getFilteredItems = () => {
+    const {activeTabId} = this.state
+    const filteredItems = imagesList.filter(
+      eachItem => eachItem.category === activeTabId,
+    )
+    return filteredItems
+  }
+
   render() {
+    const filteredItems = this.getFilteredItems()
     const randomNum = Math.floor(Math.random() * 100)
     let generatedNum
     switch (randomNum) {
       case randomNum < 31:
         generatedNum = randomNum
         break
-      case 31 <= randomNum < 61:
+      case randomNum >= 31 < 61:
         generatedNum = Math.floor(randomNum / 2)
         break
       default:
@@ -279,6 +296,12 @@ class App extends Component {
         <ul className="tabs-container">
           {tabsList.map(tabDetails => (
             <TabItem key={tabDetails.id} tabDetails={tabDetails} />
+          ))}
+        </ul>
+
+        <ul>
+          {filteredItems.map(itemDetails => (
+            <ImageItem key={itemDetails.id} itemDetails={itemDetails} />
           ))}
         </ul>
       </div>
