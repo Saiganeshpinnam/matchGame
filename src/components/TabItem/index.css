@@ -1,0 +1,11 @@
+
+.tab-list-element{
+  list-style-type: none;
+}
+.tab-item-container {
+  background-color: transparent;
+  border-width: 0px;
+  color: #ffffff;
+  font-size: 23px;
+  font-family: "Roboto";
+}

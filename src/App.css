@@ -29,3 +29,7 @@ body {
   height: 40%;
   width: 60%;
 }
+.tabs-container{
+  display: flex;
+  flex-direction: row;
+}

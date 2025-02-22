@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import TabItem from './components/TabItem'
+
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
@@ -273,6 +275,12 @@ class App extends Component {
           src={imagesList[generatedNum].imageUrl}
           className="random-generated-image"
         />
+
+        <ul className="tabs-container">
+          {tabsList.map(tabDetails => (
+            <TabItem key={tabDetails.id} tabDetails={tabDetails} />
+          ))}
+        </ul>
       </div>
     )
   }
