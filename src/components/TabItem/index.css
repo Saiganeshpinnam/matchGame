@@ -1,5 +1,4 @@
-
-.tab-list-element{
+.tab-list-element {
   list-style-type: none;
 }
 .tab-item-container {
@@ -7,5 +6,6 @@
   border-width: 0px;
   color: #ffffff;
   font-size: 23px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
+  cursor: pointer;
 }

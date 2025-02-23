@@ -4,6 +4,8 @@ import TabItem from './components/TabItem'
 
 import ImageItem from './components/ImageItem'
 
+import Header from './components/Header'
+
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
@@ -258,6 +260,13 @@ console.log(imagesList.length)
 class App extends Component {
   state = {
     activeTabId: tabsList[0].tabId,
+    score: 0,
+  }
+
+  clickTabItem = tabId => {
+    this.setState({
+      activeTabId: tabId,
+    })
   }
 
   getFilteredItems = () => {
@@ -268,7 +277,16 @@ class App extends Component {
     return filteredItems
   }
 
+  // onCheckingImageSelection = (id) => {
+  //   if (imagesList[generatedNum].id === id) {
+  //     this.setState(prevState => ({
+  //       score: prevState.score + 1,
+  //     }))
+  //   }
+  // }
+
   render() {
+    const {score} = this.state
     const filteredItems = this.getFilteredItems()
     const randomNum = Math.floor(Math.random() * 100)
     let generatedNum
@@ -284,9 +302,13 @@ class App extends Component {
         break
     }
 
+    // const onCheckingImageSelection = onCheckingImageSelection(
+    //   imagesList[generatedNum].id,
+    // )
+
     return (
       <div className="app-container">
-        <header />
+        <Header score={score} />
         <p className="generated-num">{generatedNum}</p>
         <img
           src={imagesList[generatedNum].imageUrl}
@@ -295,13 +317,21 @@ class App extends Component {
 
         <ul className="tabs-container">
           {tabsList.map(tabDetails => (
-            <TabItem key={tabDetails.id} tabDetails={tabDetails} />
+            <TabItem
+              key={tabDetails.id}
+              tabDetails={tabDetails}
+              clickTabItem={this.clickTabItem}
+            />
           ))}
         </ul>
 
-        <ul>
+        <ul className="items-container">
           {filteredItems.map(itemDetails => (
-            <ImageItem key={itemDetails.id} itemDetails={itemDetails} />
+            <ImageItem
+              key={itemDetails.id}
+              itemDetails={itemDetails}
+              onCheckingImageSelection={this.onCheckingImageSelection}
+            />
           ))}
         </ul>
       </div>
