@@ -3,6 +3,7 @@ import './index.css'
 const TabItem = props => {
   const {tabDetails, clickTabItem} = props
   const {tabId, displayText} = tabDetails
+  // console.log(tabDetails)
   const onClickTabItem = () => {
     clickTabItem(tabId)
   }

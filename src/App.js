@@ -253,7 +253,7 @@ const imagesList = [
     category: 'FRUIT',
   },
 ]
-console.log(imagesList.length)
+//  console.log(imagesList.length)
 
 // Replace your code here
 
@@ -261,6 +261,47 @@ class App extends Component {
   state = {
     activeTabId: tabsList[0].tabId,
     score: 0,
+    generatedImageId: imagesList[0].id,
+    timerInSeconds: 60,
+  }
+
+  componentDidMount() {
+    this.generateRandomImage()
+  }
+
+  generateRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imagesList.length)
+    this.setState({
+      generatedImageId: imagesList[randomIndex].id,
+    })
+    this.IntervalId = setInterval(this.decrementTimeElapsedSeconds, 1000)
+  }
+
+  decrementTimeElapsedSeconds = () => {
+    this.setState(prevState => ({
+      timerInSeconds: prevState.timerInSeconds - 1,
+    }))
+  }
+
+  getFormattedTime = () => {
+    const {timerInSeconds} = this.state
+    const stringifiedSeconds =
+      timerInSeconds > 9 ? timerInSeconds : `0${timerInSeconds}`
+    return stringifiedSeconds
+  }
+
+  onCheckingImageSelection = id => {
+    const {generatedImageId} = this.state
+    if (generatedImageId === id) {
+      this.setState(
+        prevState => ({
+          score: prevState.score + 1,
+        }),
+        this.generateRandomImage,
+      )
+    } else {
+      console.log('Play Again')
+    }
   }
 
   clickTabItem = tabId => {
@@ -277,64 +318,43 @@ class App extends Component {
     return filteredItems
   }
 
-  // onCheckingImageSelection = (id) => {
-  //   if (imagesList[generatedNum].id === id) {
-  //     this.setState(prevState => ({
-  //       score: prevState.score + 1,
-  //     }))
-  //   }
-  // }
-
   render() {
-    const {score} = this.state
+    const {score, generatedImageId} = this.state
     const filteredItems = this.getFilteredItems()
-    const randomNum = Math.floor(Math.random() * 100)
-    let generatedNum
-    switch (randomNum) {
-      case randomNum < 31:
-        generatedNum = randomNum
-        break
-      case randomNum >= 31 < 61:
-        generatedNum = Math.floor(randomNum / 2)
-        break
-      default:
-        generatedNum = Math.floor(randomNum / 4)
-        break
-    }
 
-    // const onCheckingImageSelection = onCheckingImageSelection(
-    //   imagesList[generatedNum].id,
-    // )
+    const generatedItem = imagesList.find(item => item.id === generatedImageId)
 
     return (
-      <div className="app-container">
-        <Header score={score} />
-        <p className="generated-num">{generatedNum}</p>
-        <img
-          src={imagesList[generatedNum].imageUrl}
-          className="random-generated-image"
-        />
+      <>
+        <Header score={score} getFormattedTime={this.getFormattedTime} />
+        <div className="app-container">
+          <img
+            src={generatedItem.imageUrl}
+            className="random-generated-image"
+            alt="match"
+          />
 
-        <ul className="tabs-container">
-          {tabsList.map(tabDetails => (
-            <TabItem
-              key={tabDetails.id}
-              tabDetails={tabDetails}
-              clickTabItem={this.clickTabItem}
-            />
-          ))}
-        </ul>
+          <ul className="tabs-container">
+            {tabsList.map(tabDetails => (
+              <TabItem
+                key={tabDetails.tabId}
+                tabDetails={tabDetails}
+                clickTabItem={this.clickTabItem}
+              />
+            ))}
+          </ul>
 
-        <ul className="items-container">
-          {filteredItems.map(itemDetails => (
-            <ImageItem
-              key={itemDetails.id}
-              itemDetails={itemDetails}
-              onCheckingImageSelection={this.onCheckingImageSelection}
-            />
-          ))}
-        </ul>
-      </div>
+          <ul className="items-container">
+            {filteredItems.map(itemDetails => (
+              <ImageItem
+                key={itemDetails.id}
+                itemDetails={itemDetails}
+                onCheckingImageSelection={this.onCheckingImageSelection}
+              />
+            ))}
+          </ul>
+        </div>
+      </>
     )
   }
 }

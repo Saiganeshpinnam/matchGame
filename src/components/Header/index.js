@@ -1,8 +1,11 @@
+import './index.css'
+
 const Header = props => {
-  const score = props
+  const {score, getFormattedTime} = props
   return (
-    <div>
-      <p>{score}</p>
+    <div className="header-bg-container">
+      <p className="score">{score}</p>
+      <p className="timer">{getFormattedTime()}</p>
     </div>
   )
 }

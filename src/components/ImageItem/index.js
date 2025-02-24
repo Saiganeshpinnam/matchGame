@@ -4,6 +4,8 @@ const ImageItem = props => {
   const {itemDetails, onCheckingImageSelection} = props
   const {imageUrl, id} = itemDetails
 
+  // console.log(itemDetails)
+
   const onClickImageItem = () => {
     onCheckingImageSelection(id)
   }
