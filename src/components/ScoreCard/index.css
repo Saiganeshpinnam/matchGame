@@ -1,5 +1,7 @@
 .scorecard-container {
   background-color: #cf60c8;
+  height: 60%;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

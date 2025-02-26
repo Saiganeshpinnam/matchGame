@@ -265,6 +265,7 @@ class App extends Component {
     score: 0,
     generatedImageId: imagesList[0].id,
     timerInSeconds: 60,
+    isGameOver: false,
   }
 
   componentDidMount() {
@@ -298,7 +299,7 @@ class App extends Component {
   }
 
   onCheckingImageSelection = id => {
-    const {generatedImageId} = this.state
+    const {generatedImageId, isGameOver} = this.state
     if (generatedImageId === id) {
       this.setState(
         prevState => ({
@@ -307,7 +308,9 @@ class App extends Component {
         this.generateRandomImage,
       )
     } else {
-      ;<ScoreCard />
+      this.setState(prevState => ({
+        isGameOver: !prevState.isGameOver,
+      }))
     }
   }
 
@@ -326,7 +329,7 @@ class App extends Component {
   }
 
   render() {
-    const {score, generatedImageId, timerInSeconds} = this.state
+    const {score, generatedImageId, timerInSeconds, isGameOver} = this.state
     const filteredItems = this.getFilteredItems()
 
     const generatedItem = imagesList.find(item => item.id === generatedImageId)
@@ -364,7 +367,7 @@ class App extends Component {
           </div>
         ) : (
           <>
-            <ScoreCard score={score} />
+            <ScoreCard score={score} isGameOver={!isGameOver} />
           </>
         )}
       </>

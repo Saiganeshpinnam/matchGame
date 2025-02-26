@@ -2,11 +2,39 @@
   background-color: #2c0e3a;
   height: 5vw;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.score-timer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.timer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 18px;
+}
+.timer-image {
+  height: 20px;
+  width: 20px;
+}
+.website-logo {
+  height: 45px;
+  width: 120px;
+  margin: 7px;
 }
 .score {
   color: #ffffff;
 }
+.score-count {
+  color: #fec653;
+}
 .timer {
-  color: #ffffff;
+  color: #fec653;
   font-size: 15px;
 }
