@@ -348,39 +348,41 @@ class App extends Component {
     return (
       <>
         <Header score={score} getFormattedTime={this.getFormattedTime} />
-        {timerInSeconds !== 0 && !isGameOver ? (
-          <div className="app-container">
-            <img
-              src={generatedItem.imageUrl}
-              className="random-generated-image"
-              alt="match"
-            />
+        <div className="app-container">
+          {timerInSeconds !== 0 && !isGameOver ? (
+            <>
+              <img
+                src={generatedItem.imageUrl}
+                className="random-generated-image"
+                alt="match"
+              />
 
-            <ul className="tabs-container">
-              {tabsList.map(tabDetails => (
-                <TabItem
-                  key={tabDetails.tabId}
-                  tabDetails={tabDetails}
-                  clickTabItem={this.clickTabItem}
-                />
-              ))}
-            </ul>
+              <ul className="tabs-container">
+                {tabsList.map(tabDetails => (
+                  <TabItem
+                    key={tabDetails.tabId}
+                    tabDetails={tabDetails}
+                    clickTabItem={this.clickTabItem}
+                  />
+                ))}
+              </ul>
 
-            <ul className="items-container">
-              {filteredItems.map(itemDetails => (
-                <ImageItem
-                  key={itemDetails.id}
-                  itemDetails={itemDetails}
-                  onCheckingImageSelection={this.onCheckingImageSelection}
-                />
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <>
-            <ScoreCard score={score} isGameOver={isGameOver} />
-          </>
-        )}
+              <ul className="items-container">
+                {filteredItems.map(itemDetails => (
+                  <ImageItem
+                    key={itemDetails.id}
+                    itemDetails={itemDetails}
+                    onCheckingImageSelection={this.onCheckingImageSelection}
+                  />
+                ))}
+              </ul>
+            </>
+          ) : (
+            <>
+              <ScoreCard score={score} isGameOver={isGameOver} />
+            </>
+          )}
+        </div>
       </>
     )
   }

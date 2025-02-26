@@ -1,7 +1,8 @@
 .scorecard-container {
-  background-color: #cf60c8;
-  height: 60%;
-  width: 80vw;
+  background-size: cover;
+  background-color: #2c0e3a;
+  height: 50vh;
+  width: 50vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,4 +11,20 @@
 .score-card-image {
   height: 100px;
   width: 100px;
+}
+.play-again-container {
+  background-color: #cf60c8;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  width: 160px;
+  border-radius: 12px;
+  color: #ffffff;
+}
+
+.reset-icon {
+  height: 20px;
+  width: 20px;
 }

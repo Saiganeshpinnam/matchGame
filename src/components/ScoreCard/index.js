@@ -12,6 +12,15 @@ const ScoreCard = props => {
         />
         <h1>Your Score</h1>
         <p>{score}</p>
+
+        <button type="button" className="play-again-container">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/match-game-play-again-img.png"
+            alt="reset"
+            className="reset-icon"
+          />
+          <span>PLAY AGAIN</span>
+        </button>
       </div>
     )
   )
