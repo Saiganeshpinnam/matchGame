@@ -6,6 +6,8 @@ import ImageItem from './components/ImageItem'
 
 import Header from './components/Header'
 
+import ScoreCard from './components/ScoreCard'
+
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
@@ -278,8 +280,13 @@ class App extends Component {
   }
 
   decrementTimeElapsedSeconds = () => {
+    const {timerInSeconds} = this.state
+    if (timerInSeconds === 0) {
+      clearInterval(this.IntervalId)
+      return
+    }
     this.setState(prevState => ({
-      timerInSeconds: prevState.timerInSeconds - 1,
+      timerInSeconds: prevState.timerInSeconds - 5,
     }))
   }
 
@@ -300,7 +307,7 @@ class App extends Component {
         this.generateRandomImage,
       )
     } else {
-      console.log('Play Again')
+      ;<ScoreCard />
     }
   }
 
@@ -319,7 +326,7 @@ class App extends Component {
   }
 
   render() {
-    const {score, generatedImageId} = this.state
+    const {score, generatedImageId, timerInSeconds} = this.state
     const filteredItems = this.getFilteredItems()
 
     const generatedItem = imagesList.find(item => item.id === generatedImageId)
@@ -327,33 +334,39 @@ class App extends Component {
     return (
       <>
         <Header score={score} getFormattedTime={this.getFormattedTime} />
-        <div className="app-container">
-          <img
-            src={generatedItem.imageUrl}
-            className="random-generated-image"
-            alt="match"
-          />
+        {timerInSeconds !== 0 ? (
+          <div className="app-container">
+            <img
+              src={generatedItem.imageUrl}
+              className="random-generated-image"
+              alt="match"
+            />
 
-          <ul className="tabs-container">
-            {tabsList.map(tabDetails => (
-              <TabItem
-                key={tabDetails.tabId}
-                tabDetails={tabDetails}
-                clickTabItem={this.clickTabItem}
-              />
-            ))}
-          </ul>
+            <ul className="tabs-container">
+              {tabsList.map(tabDetails => (
+                <TabItem
+                  key={tabDetails.tabId}
+                  tabDetails={tabDetails}
+                  clickTabItem={this.clickTabItem}
+                />
+              ))}
+            </ul>
 
-          <ul className="items-container">
-            {filteredItems.map(itemDetails => (
-              <ImageItem
-                key={itemDetails.id}
-                itemDetails={itemDetails}
-                onCheckingImageSelection={this.onCheckingImageSelection}
-              />
-            ))}
-          </ul>
-        </div>
+            <ul className="items-container">
+              {filteredItems.map(itemDetails => (
+                <ImageItem
+                  key={itemDetails.id}
+                  itemDetails={itemDetails}
+                  onCheckingImageSelection={this.onCheckingImageSelection}
+                />
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <>
+            <ScoreCard score={score} />
+          </>
+        )}
       </>
     )
   }
