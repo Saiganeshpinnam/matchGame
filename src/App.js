@@ -270,6 +270,11 @@ class App extends Component {
 
   componentDidMount() {
     this.generateRandomImage()
+    this.IntervalId = setInterval(this.decrementTimeElapsedSeconds, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID)
   }
 
   generateRandomImage = () => {
@@ -277,26 +282,22 @@ class App extends Component {
     this.setState({
       generatedImageId: imagesList[randomIndex].id,
     })
-    this.IntervalId = setInterval(this.decrementTimeElapsedSeconds, 1000)
   }
 
   decrementTimeElapsedSeconds = () => {
     const {timerInSeconds} = this.state
     if (timerInSeconds === 0) {
       clearInterval(this.IntervalId)
+      this.setState({isGameOver: true})
       return
     }
     this.setState(prevState => ({
-      timerInSeconds: prevState.timerInSeconds - 5,
+      timerInSeconds: prevState.timerInSeconds - 1,
     }))
   }
 
   // componentDidMount() {
   //   this.timerID = setInterval(this.tick, 1000)
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timerID)
   // }
 
   getFormattedTime = () => {
@@ -307,7 +308,7 @@ class App extends Component {
   }
 
   onCheckingImageSelection = id => {
-    const {generatedImageId, isGameOver} = this.state
+    const {generatedImageId, isGameOver, timerInSeconds} = this.state
     if (generatedImageId === id) {
       this.setState(
         prevState => ({
@@ -316,7 +317,11 @@ class App extends Component {
         this.generateRandomImage,
       )
     } else {
-      this.setState({isGameOver: true})
+      // this.setState({isGameOver: true})
+      this.setState({
+        isGameOver: true,
+        timerInSeconds: 0,
+      })
     }
   }
 

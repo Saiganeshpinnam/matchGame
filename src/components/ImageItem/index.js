@@ -14,7 +14,7 @@ const ImageItem = props => {
     <li>
       <img
         src={imageUrl}
-        alt="match"
+        alt="thumbnail"
         className="each-item"
         onClick={onClickImageItem}
       />
