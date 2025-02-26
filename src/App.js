@@ -291,6 +291,14 @@ class App extends Component {
     }))
   }
 
+  // componentDidMount() {
+  //   this.timerID = setInterval(this.tick, 1000)
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.timerID)
+  // }
+
   getFormattedTime = () => {
     const {timerInSeconds} = this.state
     const stringifiedSeconds =
@@ -308,9 +316,7 @@ class App extends Component {
         this.generateRandomImage,
       )
     } else {
-      this.setState(prevState => ({
-        isGameOver: !prevState.isGameOver,
-      }))
+      this.setState({isGameOver: true})
     }
   }
 
@@ -337,7 +343,7 @@ class App extends Component {
     return (
       <>
         <Header score={score} getFormattedTime={this.getFormattedTime} />
-        {timerInSeconds !== 0 ? (
+        {timerInSeconds !== 0 && !isGameOver ? (
           <div className="app-container">
             <img
               src={generatedItem.imageUrl}
@@ -367,7 +373,7 @@ class App extends Component {
           </div>
         ) : (
           <>
-            <ScoreCard score={score} isGameOver={!isGameOver} />
+            <ScoreCard score={score} isGameOver={isGameOver} />
           </>
         )}
       </>
