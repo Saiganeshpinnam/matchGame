@@ -13,8 +13,8 @@ const ScoreCard = props => {
           className="score-card-image"
           alt="trophy"
         />
-        <h1>Your Score</h1>
-        <p>{score}</p>
+        <h1 className="your-score-heading">Your Score</h1>
+        <p className="final-user-score">{score}</p>
 
         <button
           type="button"
@@ -26,7 +26,7 @@ const ScoreCard = props => {
             alt="reset"
             className="reset-icon"
           />
-          <span>PLAY AGAIN</span>
+          <span className="play-again-text">PLAY AGAIN</span>
         </button>
       </div>
     )

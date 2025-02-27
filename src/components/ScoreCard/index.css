@@ -9,8 +9,18 @@
   align-items: center;
 }
 .score-card-image {
-  height: 100px;
-  width: 100px;
+  height: 42%;
+  width: 50%;
+}
+.your-score-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 18px;
+}
+.final-user-score {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 18px;
 }
 .play-again-container {
   background-color: #cf60c8;
@@ -18,13 +28,43 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 55px;
-  width: 160px;
-  border-radius: 12px;
+  height: 27px;
+  width: 80px;
+  border-radius: 10px;
   color: #ffffff;
+  border-width: 0px;
+}
+.play-again-text{
+  color: #ffffff;
+  font-size: 7px;
+}
+.reset-icon {
+  height: 15px;
+  width: 15px;
 }
 
-.reset-icon {
-  height: 20px;
-  width: 20px;
+
+@media screen and (min-width: 768px) {
+  .score-card-image {
+    height: 50%;
+    width: 50%;
+  }
+  .play-again-container {
+    height: 55px;
+    width: 160px;
+    border-radius: 12px;
+  }
+  .play-again-text{
+  font-size: 15px;
+}
+  .your-score-heading {
+    font-size: 30px;
+  }
+  .final-user-score {
+    font-size: 30px;
+  }
+  .reset-icon {
+    height: 20px;
+    width: 20px;
+  }
 }
