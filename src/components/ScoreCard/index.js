@@ -1,7 +1,10 @@
 import './index.css'
 
 const ScoreCard = props => {
-  const {score, isGameOver} = props
+  const {score, isGameOver, onStartNewGame} = props
+  const playAgainGame = () => {
+    onStartNewGame(isGameOver)
+  }
   return (
     isGameOver && (
       <div className="scorecard-container">
@@ -13,7 +16,11 @@ const ScoreCard = props => {
         <h1>Your Score</h1>
         <p>{score}</p>
 
-        <button type="button" className="play-again-container">
+        <button
+          type="button"
+          className="play-again-container"
+          onClick={playAgainGame}
+        >
           <img
             src="https://assets.ccbp.in/frontend/react-js/match-game-play-again-img.png"
             alt="reset"

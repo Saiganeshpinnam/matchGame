@@ -308,7 +308,7 @@ class App extends Component {
   }
 
   onCheckingImageSelection = id => {
-    const {generatedImageId, isGameOver, timerInSeconds} = this.state
+    const {generatedImageId} = this.state
     if (generatedImageId === id) {
       this.setState(
         prevState => ({
@@ -337,6 +337,12 @@ class App extends Component {
       eachItem => eachItem.category === activeTabId,
     )
     return filteredItems
+  }
+
+  onStartNewGame = isGameOver => {
+    this.setState({
+      isGameOver: !isGameOver,
+    })
   }
 
   render() {
@@ -379,7 +385,11 @@ class App extends Component {
             </>
           ) : (
             <>
-              <ScoreCard score={score} isGameOver={isGameOver} />
+              <ScoreCard
+                score={score}
+                isGameOver={isGameOver}
+                onStartNewGame={this.onStartNewGame}
+              />
             </>
           )}
         </div>
