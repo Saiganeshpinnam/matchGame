@@ -26,14 +26,35 @@ body {
   color: #ffffff;
 }
 .random-generated-image {
-  height: 40%;
-  width: 60%;
+  height: 30%;
+  width: 90%;
 }
 .tabs-container {
   display: flex;
   flex-direction: row;
 }
 .items-container {
+  list-style-type: none;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+@media screen and (min-width: 576px) {
+  .items-container {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .random-generated-image {
+    height: 40%;
+    width: 80%;
+  }
+  .items-container {
+    width: 90%;
+  }
 }

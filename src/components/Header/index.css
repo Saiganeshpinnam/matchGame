@@ -1,10 +1,12 @@
 .header-bg-container {
   background-color: #2c0e3a;
-  height: 5vw;
+  height: 50px;
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 .score-timer-container {
   display: flex;
@@ -20,21 +22,52 @@
   margin: 18px;
 }
 .timer-image {
-  height: 20px;
-  width: 20px;
+  height: 10px;
+  width: 10px;
 }
 .website-logo {
-  height: 45px;
-  width: 120px;
-  margin: 7px;
+  height: 25px;
+  width: 80px;
+  margin: 4px;
 }
 .score {
   color: #ffffff;
+  font-size: 12px;
 }
 .score-count {
   color: #fec653;
+  font-size: 12px;
 }
 .timer {
   color: #fec653;
-  font-size: 15px;
+  font-size: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-bg-container {
+    height: 5%;
+    width: 100vw;
+    padding: 10px;
+  }
+  .score {
+    font-size: 16px;
+  }
+  .score-count {
+    font-size: 16px;
+  }
+  .timer-container {
+    margin: 18px;
+  }
+  .timer-image {
+    height: 20px;
+    width: 20px;
+  }
+  .website-logo {
+    height: 45px;
+    width: 120px;
+    margin: 7px;
+  }
+  .timer {
+    font-size: 15px;
+  }
 }

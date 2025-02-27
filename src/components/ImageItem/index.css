@@ -1,4 +1,12 @@
 .each-item {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
+  margin: 3px;
+}
+
+@media screen and (min-width: 768px) {
+  .each-item {
+    height: 100px;
+    width: 120px;
+  }
 }

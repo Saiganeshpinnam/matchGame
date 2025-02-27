@@ -5,11 +5,21 @@
   background-color: transparent;
   border-width: 0px;
   color: #ffffff;
-  font-size: 23px;
+  font-size: 15px;
   font-family: 'Roboto';
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.active-tab-btn{
+.active-tab-btn {
   color: #fec653;
   text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .tab-item-container {
+    font-size: 23px;
+  }
 }
