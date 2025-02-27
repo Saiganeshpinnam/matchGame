@@ -341,12 +341,24 @@ class App extends Component {
 
   onStartNewGame = isGameOver => {
     this.setState({
+      activeTabId: tabsList[0].tabId,
+      score: 0,
+      generatedImageId: imagesList[0].id,
+      timerInSeconds: 60,
       isGameOver: !isGameOver,
     })
+    clearInterval(this.IntervalId)
+    this.IntervalId = setInterval(this.decrementTimeElapsedSeconds, 1000)
   }
 
   render() {
-    const {score, generatedImageId, timerInSeconds, isGameOver} = this.state
+    const {
+      score,
+      generatedImageId,
+      timerInSeconds,
+      isGameOver,
+      activeTabId,
+    } = this.state
     const filteredItems = this.getFilteredItems()
 
     const generatedItem = imagesList.find(item => item.id === generatedImageId)
@@ -369,6 +381,7 @@ class App extends Component {
                     key={tabDetails.tabId}
                     tabDetails={tabDetails}
                     clickTabItem={this.clickTabItem}
+                    isActive={activeTabId === tabDetails.tabId}
                   />
                 ))}
               </ul>

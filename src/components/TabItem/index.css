@@ -9,3 +9,7 @@
   font-family: 'Roboto';
   cursor: pointer;
 }
+.active-tab-btn{
+  color: #fec653;
+  text-decoration: underline;
+}
