@@ -8,11 +8,13 @@ const ScoreCard = props => {
   return (
     isGameOver && (
       <div className="scorecard-container">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/match-game-trophy.png"
-          className="score-card-image"
-          alt="trophy"
-        />
+        <>
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/match-game-trophy.png"
+            className="score-card-image"
+            alt="trophy"
+          />
+        </>
         <h1 className="your-score-heading">Your Score</h1>
         <p className="final-user-score">{score}</p>
 

@@ -303,7 +303,7 @@ class App extends Component {
   getFormattedTime = () => {
     const {timerInSeconds} = this.state
     const stringifiedSeconds =
-      timerInSeconds > 9 ? timerInSeconds : `0${timerInSeconds}`
+      timerInSeconds > 9 ? timerInSeconds : `${timerInSeconds}`
     return stringifiedSeconds
   }
 

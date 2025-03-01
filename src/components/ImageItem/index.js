@@ -2,7 +2,7 @@ import './index.css'
 
 const ImageItem = props => {
   const {itemDetails, onCheckingImageSelection} = props
-  const {imageUrl, id} = itemDetails
+  const {thumbnailUrl, id} = itemDetails
 
   // console.log(itemDetails)
 
@@ -12,12 +12,9 @@ const ImageItem = props => {
 
   return (
     <li>
-      <img
-        src={imageUrl}
-        alt="thumbnail"
-        className="each-item"
-        onClick={onClickImageItem}
-      />
+      <buttton onClick={onClickImageItem}>
+        <img src={thumbnailUrl} alt="thumbnail" className="each-item" />
+      </buttton>
     </li>
   )
 }
